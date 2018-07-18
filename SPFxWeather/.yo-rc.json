@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "packageManager": "pnpm",
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.0",
+    "libraryName": "sp-fx-weather",
+    "libraryId": "a0778f35-495c-4487-89f0-0921c23250bf",
+    "componentType": "webpart"
+  }
+}

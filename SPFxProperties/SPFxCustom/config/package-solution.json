@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-custom-client-side-solution",
+    "id": "83755c3b-8a1f-4dea-b091-3a8e1f75b50e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-custom.sppkg"
+  }
+}

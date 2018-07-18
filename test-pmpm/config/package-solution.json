@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "test-pmpm-client-side-solution",
+    "id": "c06a67bc-0b49-4467-9e4c-84bad22cae36",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/test-pmpm.sppkg"
+  }
+}

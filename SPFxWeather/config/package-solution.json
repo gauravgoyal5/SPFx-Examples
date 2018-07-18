@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-weather-client-side-solution",
+    "id": "a0778f35-495c-4487-89f0-0921c23250bf",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-weather.sppkg"
+  }
+}

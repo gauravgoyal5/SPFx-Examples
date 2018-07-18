@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-property-field-color-picker-client-side-solution",
+    "id": "560fd60c-5d41-48a9-8f0d-95978533b734",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-property-field-color-picker.sppkg"
+  }
+}

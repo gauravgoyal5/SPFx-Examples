@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "newsrollup-webpart-client-side-solution",
+    "id": "65a1fc5b-2d22-4296-af96-b6ac298a11e4",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/newsrollup-webpart.sppkg"
+  }
+}

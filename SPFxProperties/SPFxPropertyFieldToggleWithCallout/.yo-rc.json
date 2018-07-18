@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "sp-fx-property-field-toggle-with-callout",
+    "libraryId": "be503200-ff1a-431d-ad13-69dc00360a48",
+    "environment": "spo"
+  }
+}

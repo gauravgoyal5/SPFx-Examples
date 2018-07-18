@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "sp-fx-property-field-color-picker",
+    "libraryId": "560fd60c-5d41-48a9-8f0d-95978533b734",
+    "environment": "spo"
+  }
+}

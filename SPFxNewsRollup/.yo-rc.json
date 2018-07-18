@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "packageManager": "npm",
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.0",
+    "libraryName": "newsrollup-webpart",
+    "libraryId": "65a1fc5b-2d22-4296-af96-b6ac298a11e4",
+    "componentType": "webpart"
+  }
+}

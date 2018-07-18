@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "angular-element-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/angularElementWebPart/AngularElementWebPartWebPart.js",
+          "manifest": "./src/webparts/angularElementWebPart/AngularElementWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "AngularElementWebPartWebPartStrings": "lib/webparts/angularElementWebPart/loc/{locale}.js"
+  }
+}
