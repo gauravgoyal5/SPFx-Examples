@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.1",
+    "libraryName": "sp-fx-marquee",
+    "libraryId": "92f8209b-0063-40ec-b5b6-9c54758003e6",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

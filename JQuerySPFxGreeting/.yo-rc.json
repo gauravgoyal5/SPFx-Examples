@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.1",
+    "libraryName": "j-query-sp-fx-greeting",
+    "libraryId": "0a83b592-79a8-4e2d-baf1-55520e39189f",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

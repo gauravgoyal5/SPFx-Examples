@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-fx-j-query-greetings-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spFxJQueryGreetingsWebPart/SpFxJQueryGreetingsWebPartWebPart.js",
+          "manifest": "./src/webparts/spFxJQueryGreetingsWebPart/SpFxJQueryGreetingsWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpFxJQueryGreetingsWebPartWebPartStrings": "lib/webparts/spFxJQueryGreetingsWebPart/loc/{locale}.js"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-fx-angular-js-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spFxAngularJsWebPart/SpFxAngularJsWebPartWebPart.js",
+          "manifest": "./src/webparts/spFxAngularJsWebPart/SpFxAngularJsWebPartWebPart.manifest.json"
+        }
+      ]
+    },
+    "sample-entry-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/sampleEntryForm/SampleEntryFormWebPart.js",
+          "manifest": "./src/webparts/sampleEntryForm/SampleEntryFormWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {
+    "jquery": {
+      "path": "https://code.jquery.com/jquery-2.1.1.min.js",
+      "globalName": "jQuery"
+    },
+    "angular": {
+      "path": "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js",
+      "globalName": "angular"
+    },
+    "bootstrap": {
+      "path": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+      "globalName": "bootstrap"
+    }
+  },
+  "localizedResources": {
+    "SpFxAngularJsWebPartWebPartStrings": "lib/webparts/spFxAngularJsWebPart/loc/{locale}.js",
+    "SampleEntryFormWebPartStrings": "lib/webparts/sampleEntryForm/loc/{locale}.js"
+  }
+}

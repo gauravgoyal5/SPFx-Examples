@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-angular-js-client-side-solution",
+    "id": "7f9fe203-f179-424f-852b-2a59fb0b6b87",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-angular-js.sppkg"
+  }
+}

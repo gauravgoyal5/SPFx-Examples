@@ -1,0 +1,228 @@
+<div id="reminderControllerDiv" ng-controller="SPAngGetReminderDataController">
+    <div class="panel panel-default biz-panel-main" data-ng-cloak="">
+        <div class="panel-heading biz-panel-heading">
+            <h3 class="panel-title biz-panel-h3">
+                <div class="trimChars" title="{{::GlobalSettings.WebPartTitle}}">
+                    {{::GlobalSettings.WebPartTitle}}
+                </div>
+            </h3>
+        </div>
+        <webpart-settings webpart-title="GlobalSettings.WebPartTitle" show-setting-icon="true" on-click-setting-icon="onClickSettingIcon()" setting-tool-tip="GlobalSettings.WebPartTitle" show-alert-icon="false" list-title="GlobalSettings.ListName" show-feedback-icon="GlobalSettings.ShowFeedbackButton" show-help-icon="true" help-web-part-filter-name="webPartFilterName" help-text="GlobalSettings.BizpHelp" webpart-id="Reminder">
+
+        </webpart-settings>
+        <div class="panel-body panel-body-WP" scrollable style="max-height: 270px;min-height: 260px;overflow: auto;padding-bottom: 0px;">
+            <table class="table table-hover" ng-hide="AllRem1.length==0">
+                <!--MyReminders=='undefined' || MyReminders=='null' || MyReminders.length==0 || -->
+                <tr>
+                    <th class="remainder-title" title="Title of reminder event." ng-click="orderBy='Title'; reverse=!reverse;">
+                        Title
+                    </th>
+                    <th class="remainder-when" title="Date/time when reminder event is expected to occur." ng-click="orderBy='BizpReminderDate'; reverse=!reverse;">
+                        When
+                    </th>
+                </tr>
+                <!---->
+                <tr ng-repeat="reminder in AllRem1 = (AllReminders  | filter: GreaterThanCurrentDate('BizpReminderDate') | filter: IsActiveTrue('BizpIsActive') | limitTo: GlobalSettings.NoOfRecsToShowInWebPart)">
+                    <td class="trimChars-resp">
+                        <a href="javascript:void(0)" id="{{reminder.ID}}" title="{{reminder.Title}}" ng-click="getItemById(reminder.ID,false,false,true,2)">
+                        {{reminder.Title}}
+                    </a>
+                    </td>
+                    <td class="trimChars">
+                        {{reminder.BizpReminderDate | date: currentCulture.AngularDateTimeFormat}}
+                    </td>
+                </tr>
+            </table>
+            <div class="padding15" ng-show="AllReminders=='undefined' || AllReminders=='null' || AllReminders.length==0 || AllRem1.length==0">
+                <div role="alert" class="alert alert-info text-center grey-alert-info">
+                    <strong>Currently, there is no Reminder event.</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="manageReminders" style="display:none;" class="BizP__new__form" kendo-window="manageReminders" k-position="{top: '10%',left: '30%'}" k-width="iframeWidth" k-actions="['Minimize','Maximize','Close']" k-modal="true" k-visible="false">
+        <div class="k-content height-inherit" scrollable>
+            <div class="form-horizontal col-xs-12 border-box paddingtop-15">
+                <div class="form-group">
+                    <label title="Title of reminder event" class="paddingtop-10"><strong>Title</strong></label>
+                    <div class="col-sm-12 col-md-12 no-padding paddingtop-10">
+                        {{Item.Title}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label title="Description of reminder event"><strong>Description</strong></label>
+                    <div class="col-sm-12 col-md-12 no-padding ScrollStyle">
+                        {{Item.Description |PlainText}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="padding-top: 10px;" title="Date/time when reminder event is expected to occur"><strong>When</strong></label>
+                    <div class="col-sm-12 col-md-12 no-padding paddingtop-10">
+                        {{Item.Date |date: currentCulture.AngularDateTimeFormat}}
+                    </div>
+                </div>
+                <div class="form-group" ng-if="Item.AttachmentFiles.length != 0">
+                    <label><b>Attachments</b></label>
+                    <div class="col-sm-12 col-md-12 kendo-col-sm-5">
+                        <div ng-repeat="fileobj in Item.AttachmentFiles">
+                            <a ng-href="{{fileobj.ServerRelativeUrl}}" target="_blank">{{fileobj.FileName}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="window-footer">
+            <div class="col-sm-7 no-padding align-text-left">
+                <div ng-hide="Item.ID==null">
+                    <item-info created-date-time="{{Item.Created}}" modified-date-time="{{Item.Modified}}" created-by-user-name="{{Item.AuthorTitle}}" modified-by-user-name="{{Item.EditorTitle}}" content-type-name="" version-number="">
+                    </item-info>
+                </div>
+            </div>
+            <div class="col-sm-4 pull-right kendo-foot-button text-right">
+                <button type="button" class="btn btn-info" title="Click to Exit" ng-click="CancelReminder()">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="manageAllReminders" class="BizP__new__form" ng-class="{'no-footer': IsLoadReminder}" style="display:none;" kendo-window="manageAllReminders" k-position="{top: '10%',left: '30%'}" k-width="iframeWidth" k-actions="['Minimize','Maximize','Close']" k-modal="true" k-visible="false" k-title="GlobalSettings.AllEntryFormTitle">
+        <div ng-show="IsLoadReminder" class="height-inherit" scrollable>
+            <div id="table-wrapper" class="k-content col-sm-12 border-box paddingtop-15 form-group">
+                <div kendo-grid k-data-source="ReminderData" k-rebind="ReminderData" k-columns="ReminderDataColumns" options="kendoGridOptions"></div>
+            </div>
+        </div>
+        <div ng-show="IsViewReminder" class="inherit-height">
+            <div class="k-content height-inherit" scrollable>
+                <div class="form-horizontal col-sm-12 border-box paddingtop-15 ">
+                    <div class="form-group">
+                        <label title="Title of reminder event"><strong>Title</strong></label>
+                        <div class="col-sm-12 col-md-12 no-padding">
+                            {{Item.Title}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label title="Description of reminder event"><strong>Description</strong></label>
+                        <div class="col-sm-12 col-md-12 no-padding ScrollStyle">
+                            {{Item.Description |PlainText}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label title="Date/time when reminder event is expected to occur"><strong>When</strong></label>
+                        <div class="col-sm-12 col-md-12 no-padding">
+                            {{Item.Date |date: currentCulture.AngularDateTimeFormat}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label title="Enable"><strong>Enable</strong></label>
+                        <div class="col-sm-12 col-md-12 no-padding">
+                            {{(Item.BizpIsActive) ? "Yes" : "No"}}
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="Item.AttachmentFiles.length != 0">
+                        <label><b>Attachments</b></label>
+                        <div class="col-sm-12 col-md-12 kendo-col-sm-5">
+                            <div ng-repeat="fileobj in Item.AttachmentFiles">
+                                <a ng-href="{{fileobj.ServerRelativeUrl}}" target="_blank">{{fileobj.FileName}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="window-footer">
+                <div class="col-sm-8 border-box text-left">
+                    <div ng-hide="Item.ID==null">
+                        <item-info created-date-time="{{Item.Created}}" modified-date-time="{{Item.Modified}}" created-by-user-name="{{Item.AuthorTitle}}" modified-by-user-name="{{Item.EditorTitle}}" content-type-name="" version-number="">
+                        </item-info>
+                    </div>
+                </div>
+                <div class="col-sm-4 border-box kendo-foot-button text-right">
+                 <button type="button" class="btn btn-default" ng-click="CancelReminder()" title="Discard unsaved changes & Exit">Cancel</button>
+                    <button type="button" id="btnEditItem" name="btnEditItem" class="btn btn-primary" ng-click="getItemById(Item.ID,false,false,true,false)" title="Edit {{GlobalSettings.FormTitle}} Item">Edit</button>
+                    <button type="button" id="btnDeleteItem" name="btnDeleteItem" class="btn btn-danger" ng-confirm-click="Are you sure, you want to delete this?" confirmed-click="deleteRecord(Item.ID)" title="Delete {{GlobalSettings.FormTitle}} Item">Delete</button>
+                   
+                </div>
+            </div>
+        </div>
+        <div ng-show="IsAddReminder || IsEditReminder" class="inherit-height">
+            <ng-form name="reminderForm" novalidate role="form" class="height-inherit display-block">
+                <div class="k-content height-inherit" scrollable>
+                    <div class="form-horizontal col-sm-12 border-box paddingtop-15 form-group">
+                        <div class="form-group">
+                            <label title="Title of reminder event" for="txtartist">
+                                Title
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-12 col-md-12 no-padding">
+                                <input type="text" name="txtTitle" id="txtTitle" maxlength="253" class="k-input k-window-input-width k-window-input-control" placeholder="Enter event title. Maximum of 253 character allowed." data-ng-model="Item.Title" ng-required="true" ng-minlength="1" />
+                                <input type="hidden" name="hdnID" id="hdnID" data-ng-model="Item.ID" />
+                                <span class="required" ng-show="reminderForm.txtTitle.$error.required">
+                                    Title is required.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label title="Description of reminder event" for="txtartist">Description</label>
+                            <div class="col-sm-12 col-md-12 no-padding">
+                                <textarea name="txtBody" rows="6" cols="50" class="k-input k-window-input-width k-window-input-control" placeholder="Enter event details" data-ng-model="Item.Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label title="Date/time when reminder event is expected to occur" for="txtartist">
+                                When {{Item.Date}}
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-12 col-md-12 no-padding">
+                                <input type="text" name="dtReminder" id="dtReminder" kendo-date-time-picker k-options="KendoDateTimeOptions" onkeydown="return false" onpaste="return false" oncut="return false" oncopy="return false" ng-model="Item.Date" ng-minlength="1" placeholder="Enter event date and time" ng-required="true">
+                                
+                                <span class="required" ng-show="reminderForm.dtReminder.$error.required">
+                                    Date is required.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label title="Check to hide/show a Reminder" for="enableEntry">Enable</label>
+                            <div class="col-sm-12 col-md-12 no-padding" style="padding-top:0px;">
+                                <input type="checkbox" id="EnableEntry" ng-model="Item.BizpIsActive" title="{{ Item.BizpIsActive ?  'Uncheck to hide a Reminder' : 'Check to show a Reminder' }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            <div class="col-sm-12 col-md-12 no-padding">
+                                <input name="BizpAttachmentsRem" id="BizpAttachmentsRem" type="file" kendo-upload validation="attachmentValidations" class="k-input k-window-input-width k-window-input-control" title="Select files to attach" />
+
+                                <div ng-repeat="fileobj in Item.AttachmentFiles track by $index" ng-if="Item.AttachmentFiles.length != 0">
+                                    <a ng-href="{{fileobj.ServerRelativeUrl}}" target="_blank">{{fileobj.FileName}}</a> <a href="javascript:void(0)" ng-confirm-click="{{GlobalMessages.CONFIRMDELETE}}" confirmed-click="RemoveAttachment(Item.ID, fileobj.FileName, $index)"><span class="glyphicon glyphicon-remove"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-footer">
+                    <div class="col-sm-7 no-padding text-left border-box">
+                        <div ng-hide="Item.ID==null">
+                            <item-info created-date-time="{{Item.Created}}" modified-date-time="{{Item.Modified}}" created-by-user-name="{{Item.AuthorTitle}}" modified-by-user-name="{{Item.EditorTitle}}" content-type-name="" version-number="">
+                            </item-info>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 pull-right border-box text-right">
+                        <div class="pull-right no-padding" ng-show="isRemProcess">
+                            <button type="button" id="btnRAProbProcesss" class="btn btn-info" title="Processing...">
+                                Processing...
+                            </button>
+                        </div>
+
+                        <div class="pull-right kendo-foot-button" ng-hide="isRemProcess">
+							<button type="button" class="btn btn-default" title="Click to discard unsaved entries and Exit" ng-click="CancelReminder()">
+                                Cancel
+                            </button>
+                            <button type="button" id="btnSaveItemRem" class="btn btn-primary" ng-disabled="reminderForm.$error.required" title="Click to save the reminder event" ng-click="saveReminder(Item.ID)">
+                                Save
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+</div>
