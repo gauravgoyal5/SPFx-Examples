@@ -1,8 +1,0 @@
-{
-  "@microsoft/generator-sharepoint": {
-    "version": "1.4.1",
-    "libraryName": "sp-fx-property-field-checkbox-with-callout",
-    "libraryId": "c113dc16-8f24-43a0-a1ad-2528ada1ca76",
-    "environment": "spo"
-  }
-}
