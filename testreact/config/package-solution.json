@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "testreact-client-side-solution",
+    "id": "fa7dd014-7b34-4334-a704-fd85668e5cfb",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/testreact.sppkg"
+  }
+}

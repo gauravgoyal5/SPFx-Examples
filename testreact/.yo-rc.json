@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.7.1",
+    "libraryName": "testreact",
+    "libraryId": "fa7dd014-7b34-4334-a704-fd85668e5cfb",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}
