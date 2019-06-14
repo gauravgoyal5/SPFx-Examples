@@ -1,0 +1,43 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.Panel {
+  .container {
+    max-width: 100%;
+    margin: 0px auto;
+    border: 1px solid $ms-color-themeDark;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .row {
+    @include ms-Grid-row;
+    @include ms-fontColor-white;
+    background-color: $ms-color-themeDark;
+    padding: 20px;
+    
+  }
+
+  .rowPanelHeader {
+    @include ms-Grid-row;
+    @include ms-fontColor-white;
+    background-color: $ms-color-themeDark;
+    padding: 0px;
+    margin : 0 0;
+  }
+
+  .headerTitle
+  {
+      margin: 10px;
+  }
+
+  .rowPanelBody {
+    @include ms-Grid-row;
+    padding: 10px;
+  }
+
+  .webpartIcon
+  {
+      background-color:  #4db2ff;
+      padding-right: 5px;
+      
+  }
+}

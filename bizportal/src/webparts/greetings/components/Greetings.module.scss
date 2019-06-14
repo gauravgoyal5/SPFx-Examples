@@ -1,0 +1,168 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+  
+  :root{
+    --color_0: #000;
+    --color_1: #fff;
+    --name: #ABB7C5;
+    --shadow: rgba(0,0,0,0.5);
+    --main_bg: linear-gradient(to right,#181623 13%, #3c3b43 21%);
+    --before_bg: linear-gradient(to bottom, #f9da41,#fa771c);
+    --after_bg: linear-gradient(to bottom, #a2eee1,#1b819a);
+    --main_bg_res: linear-gradient(to top,#181623 13%, #3c3b43 21%);
+    --before_bg_res: linear-gradient(to right, #f9da41,#fa771c);
+    --after_bg_res: linear-gradient(to right, #a2eee1,#1b819a);
+}
+
+.container {
+    max-width: 700px;
+    margin: 0px auto;
+  }
+
+.column {
+    @include ms-Grid-col;
+    @include ms-lg10;
+    @include ms-xl8;
+    @include ms-xlPush2;
+    @include ms-lgPush1;
+  }
+
+.row {
+    @include ms-Grid-row;
+    
+  }
+
+  .post {
+    text-align: center;
+  }
+
+.emailSignature{
+    background: var(--main_bg);
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 185px 20px 10px;
+    box-shadow: 0 0 10px var(--shadow);
+    position: relative;
+    text-align: center;
+}
+.emailSignature:before,
+.emailSignature:after{
+    content: '';
+    background: var(--before_bg);
+    height: 100%;
+    width: 100px;
+    position: absolute;
+    right:0;
+    top: 0;
+}
+.emailSignature:after{
+    background: var(--after_bg);
+    width: 20px;
+    right: 110px;
+}
+.emailSignature .signatureImg{
+    height: 140px;
+    width: 140px;
+    border: 7px solid var(--color_1);
+    border-radius:25px;
+    overflow: hidden;
+    transform: translateY(-50%);
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    z-index: 1;
+}
+.emailSignature .signatureImg img{
+    width: 100%;
+    height: auto;
+}
+.emailSignature .signatureDetails{
+    color: var(--name);
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.emailSignature .title{
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    display: block;
+}
+.emailSignature .title span{ font-weight: 400; }
+.emailSignature .signatureContent{
+    color: var(--color_1);
+    font-size: 14px;
+    line-height: 28px;
+    padding: 0 0 0 20px;
+    margin: 0;
+    list-style: none;
+}
+.emailSignature .signatureContent li span{ margin-right: 6px; }
+.emailSignature .icon{
+    background-color: var(--color_1);
+    height: 100%;
+    padding: 65px 30px;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.emailSignature .icon li a{
+    color: var(--color_1);
+    background-color: var(--name);
+    font-size: 16px;
+    text-align: center;
+    line-height: 25px;
+    height: 25px;
+    width: 25px;
+    margin-bottom: 10px;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+.emailSignature .icon li a:hover{
+    color: var(--name);
+    background-color: var(--color_0);
+    text-decoration: none;
+    box-shadow: 0 0 10px var(--shadow);
+}
+@media screen and (max-width:767px){
+    .emailSignature{
+        background: var(--main_bg_res);
+        text-align: center;
+        padding: 175px 20px 70px 20px;
+    }
+    .emailSignature .signatureImg{
+        transform: translateY(0) translateX(-50%);
+        top: 20px;
+        left: 50%;
+    }
+    .emailSignature:before,
+    .emailSignature:after{
+        background: var(--before_bg_res);
+        width: 100%;
+        height: 70px;
+        transform: translateY(0);
+        top:0;
+        left: 0;
+    }
+    .emailSignature:after{
+        background: var(--after_bg_res);
+        height:20px;
+        top: 85px;
+    }
+    .emailSignature .signatureDetails{ margin: 0 0 5px 0; }
+    .emailSignature .signatureContent{ padding: 0; }
+    .emailSignature .icon{
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+        top: auto;
+        bottom: 0;
+    }
+    .emailSignature .icon li{ display: inline-block; }
+    .emailSignature .icon li a{ margin: 0 5px; }
+}
+
+  
