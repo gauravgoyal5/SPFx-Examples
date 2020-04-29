@@ -20,7 +20,7 @@
     "@pnp/logging": "^1.1.2",
     "@pnp/odata": "^1.1.2",
     "@pnp/sp": "^1.1.2",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "jqueryui": "^1.11.1"
   },
   "devDependencies": {
